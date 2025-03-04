@@ -7,7 +7,7 @@ def app() :
     st.subheader('Spotify Analysis')
     spotify_option = st.selectbox('Select The sorting axis',options = ['Danceability' , 'Energy' , 'Liveness', 'Valence', 'Speechiness'],key = 'spotify' )
     df=pd.read_csv('Streamlit Visualiztion.csv')
-    year = st.slider("Select a range of values", 1918, 2023, (1981, 2023))
+    year = st.slider("Select a range of values", 1918, 2023, (1918, 2023))
     year_filtered_df = df[(df['Year Of Release'] >=year[0]) & (df['Year Of Release'] <=year[1])]
     fig1 = px.scatter(year_filtered_df, x=spotify_option ,hover_data = ['Artist','Track','Danceability','Energy','Speechiness','Liveness','Valence'],y="Track Popularity",size=year_filtered_df['Stream'])
     st.plotly_chart(fig1, use_container_width=True)
